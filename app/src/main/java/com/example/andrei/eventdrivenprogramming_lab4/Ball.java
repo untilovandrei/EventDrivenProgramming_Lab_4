@@ -9,12 +9,14 @@ public class Ball {
     int stepSizeX;
     int stepSizeY;
     int color;
+    int shape;
 
     public Ball(Coordinates coordinates, int stepSizeX, int stepSizeY, int color) {
         this.coordinates = coordinates;
         this.stepSizeX = stepSizeX;
         this.stepSizeY = stepSizeY;
         this.color = color;
+        this.shape = 1;
     }
 
     public Coordinates getCoordinates() {
@@ -48,4 +50,13 @@ public class Ball {
     public void setColor(int color) {
         this.color = color;
     }
+
+    public int getShape() {
+        return shape;
+    }
+
+    public void setShape(int shape) {
+        this.shape = shape;
+    }
 }
+

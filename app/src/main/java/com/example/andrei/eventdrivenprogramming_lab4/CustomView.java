@@ -111,8 +111,8 @@ public class CustomView extends View implements Runnable{
                         pen.setStyle(Paint.Style.FILL);
                         int lastPosX=ball1.getCoordinates().getxAxisPosition();
                         int lastPosY=ball1.getCoordinates().getyAxisPosition();
-                        canvas.drawRect(lastPosX-radius,lastPosY-radius,lastPosX+radius,lastPosY+radius,pen);
                         square1=new Square(lastPosX-radius,lastPosY-radius,lastPosX+radius,lastPosY+radius);
+                        canvas.drawRect(square1.getLeft(),square1.getTop(),square1.getRight(),square1.getBottom(),pen);
                         invalidate();
                         pen.reset();
                     }
@@ -144,8 +144,10 @@ public class CustomView extends View implements Runnable{
                         pen.setStyle(Paint.Style.FILL);
                         int lastPosX=ball2.getCoordinates().getxAxisPosition();
                         int lastPosY=ball2.getCoordinates().getyAxisPosition();
-                        canvas.drawRect(lastPosX-radius,lastPosY-radius,lastPosX+radius,lastPosY+radius,pen);
+
                         square2=new Square(lastPosX-radius,lastPosY-radius,lastPosX+radius,lastPosY+radius);
+                        canvas.drawRect(square2.getLeft(),square2.getTop(),square2.getRight(),square2.getBottom(),pen);
+
                         invalidate();
                         pen.reset();
                     }
@@ -176,8 +178,8 @@ public class CustomView extends View implements Runnable{
                         pen.setStyle(Paint.Style.FILL);
                         int lastPosX=ball3.getCoordinates().getxAxisPosition();
                         int lastPosY=ball3.getCoordinates().getyAxisPosition();
-                        canvas.drawRect(lastPosX-radius,lastPosY-radius,lastPosX+radius,lastPosY+radius,pen);
                         square3=new Square(lastPosX-radius,lastPosY-radius,lastPosX+radius,lastPosY+radius);
+                        canvas.drawRect(square3.getLeft(),square3.getTop(),square3.getRight(),square3.getBottom(),pen);
                         invalidate();
                         pen.reset();
                     }
@@ -248,7 +250,7 @@ public class CustomView extends View implements Runnable{
                         checkForInversion(posX,posY,ball);
                         checkForTouchingTopBottomBounds(posY,ball);
 
-                        if(ball.getCoordinates().getxAxisPosition()<=radius || ball.getCoordinates().getxAxisPosition()>=screenWidth-radius){
+                       /* if(ball.getCoordinates().getxAxisPosition()<=radius || ball.getCoordinates().getxAxisPosition()>=screenWidth-radius){
                             shape1=SQUARE;
                             pen.setColor(ball.getColor());
                             pen.setStrokeWidth(5);
@@ -261,7 +263,7 @@ public class CustomView extends View implements Runnable{
                             pen.reset();
                         }
                         invalidate();
-                        pen.reset();
+                        pen.reset();*/
 
                     }
 
@@ -291,32 +293,61 @@ public class CustomView extends View implements Runnable{
 
                 Random random=new Random();
                 int pos=random.nextInt(10);
-                ballsList.get(0).setColor(colors[pos]);
-                ballsList.get(0).setStepSizeY(invertStepSign(ballsList.get(0).getStepSizeY()));
+                Ball ball1=ballsList.get(0);
+                ball1.setColor(colors[pos]);
+                ball1.setStepSizeY(invertStepSign(ball1.getStepSizeY()));
                 pos=random.nextInt(10);
-                ballsList.get(1).setColor(colors[pos]);
-                ballsList.get(1).setStepSizeY(invertStepSign(ballsList.get(1).getStepSizeY()));
+                Ball ball2=ballsList.get(1);
+                ball2.setColor(colors[pos]);
+                ball2.setStepSizeY(invertStepSign(ball2.getStepSizeY()));
+
+                Coordinates newCoordinates1=new Coordinates(ball1.getCoordinates().getxAxisPosition(),ball1.getCoordinates().getyAxisPosition());
+                newBallsList.add(new Ball(newCoordinates1,3,ball1.getStepSizeY(), Color.RED));
+
+                Coordinates newCoordinates2=new Coordinates(ball2.getCoordinates().getxAxisPosition(),ball2.getCoordinates().getyAxisPosition());
+                newBallsList.add(new Ball(newCoordinates2,3,ball2.getStepSizeY(), Color.RED));
+
+
+
 
 
 
         } else if(shape2==CIRCLE && shape3==CIRCLE && distance_2_3<2*radius){
+
+                Ball ball2=ballsList.get(1);
+                Ball ball3=ballsList.get(2);
                 Random random=new Random();
                 int pos=random.nextInt(10);
-                ballsList.get(1).setColor(colors[pos]);
-                ballsList.get(1).setStepSizeY(invertStepSign(ballsList.get(1).getStepSizeY()));
+                ball2.setColor(colors[pos]);
+                ball2.setStepSizeY(invertStepSign(ball2.getStepSizeY()));
                 pos=random.nextInt(10);
-                ballsList.get(2).setColor(colors[pos]);
-                ballsList.get(2).setStepSizeY(invertStepSign(ballsList.get(2).getStepSizeY()));
+                ball3.setColor(colors[pos]);
+                ball3.setStepSizeY(invertStepSign(ball3.getStepSizeY()));
+
+            Coordinates newCoordinates1=new Coordinates(ball2.getCoordinates().getxAxisPosition(),ball2.getCoordinates().getyAxisPosition());
+            newBallsList.add(new Ball(newCoordinates1,3,ball2.getStepSizeY(), Color.RED));
+
+            Coordinates newCoordinates2=new Coordinates(ball3.getCoordinates().getxAxisPosition(),ball3.getCoordinates().getyAxisPosition());
+            newBallsList.add(new Ball(newCoordinates2,3,ball3.getStepSizeY(), Color.RED));
 
 
         } else if(shape1==CIRCLE && shape3==CIRCLE && distance_1_3<2*radius){
+                Ball ball1=ballsList.get(0);
+                Ball ball3=ballsList.get(2);
+
                 Random random=new Random();
                 int pos=random.nextInt(10);
-                ballsList.get(0).setColor(colors[pos]);
-                ballsList.get(0).setStepSizeY(invertStepSign(ballsList.get(0).getStepSizeY()));
+                ball1.setColor(colors[pos]);
+                ball1.setStepSizeY(invertStepSign(ball1.getStepSizeY()));
                 pos=random.nextInt(10);
-                ballsList.get(2).setColor(colors[pos]);
-                ballsList.get(2).setStepSizeY(invertStepSign(ballsList.get(2).getStepSizeY()));
+                ball3.setColor(colors[pos]);
+                ball3.setStepSizeY(invertStepSign(ball3.getStepSizeY()));
+
+            Coordinates newCoordinates1=new Coordinates(ball1.getCoordinates().getxAxisPosition(),ball1.getCoordinates().getyAxisPosition());
+            newBallsList.add(new Ball(newCoordinates1,3,ball1.getStepSizeY(), Color.RED));
+
+            Coordinates newCoordinates2=new Coordinates(ball3.getCoordinates().getxAxisPosition(),ball3.getCoordinates().getyAxisPosition());
+            newBallsList.add(new Ball(newCoordinates2,3,ball3.getStepSizeY(), Color.RED));
 
 
         }
@@ -445,3 +476,7 @@ public class CustomView extends View implements Runnable{
 
 
 }
+
+
+
+// All is working "Ca ceasul !!!"

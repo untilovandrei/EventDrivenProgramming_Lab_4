@@ -31,8 +31,6 @@
             android:text="Advanced level"
             android:id="@+id/btn_advanced"
             android:textColor="#FF0000"/>
-
-
     </LinearLayout>
 
 

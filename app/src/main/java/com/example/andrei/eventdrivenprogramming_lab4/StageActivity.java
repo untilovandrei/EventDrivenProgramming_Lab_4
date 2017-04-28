@@ -30,7 +30,7 @@ public class StageActivity extends AppCompatActivity  {
                 Log.i("Y ",String.valueOf(y));
                 //CustomView.newCircles.add(new Pair<Float, Float>(x,y));
                 Coordinates newCoordinates=new Coordinates((int)x,(int)y);
-                CustomView.newBallsList.add(new Ball(newCoordinates,2,5, Color.RED));
+                CustomView.ballsList.add(new Ball(newCoordinates,2,5, Color.RED));
 
                 return false;
             }
@@ -39,3 +39,5 @@ public class StageActivity extends AppCompatActivity  {
 
 
 }
+
+// All is working "Ca ceasul"
